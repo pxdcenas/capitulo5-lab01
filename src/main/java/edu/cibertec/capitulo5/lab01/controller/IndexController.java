@@ -16,7 +16,7 @@ public class IndexController {
     @GetMapping("/ip")
     @ResponseBody
     public String json() {
-        String ip = "{\"origin\": \"20.225.105.9\"}";
+        String ip = "{\"origin\": \"20.225.105.10\"}";
         return ip;
     }
 }
