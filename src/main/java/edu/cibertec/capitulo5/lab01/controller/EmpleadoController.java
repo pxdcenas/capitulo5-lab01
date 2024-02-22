@@ -4,6 +4,7 @@ import edu.cibertec.capitulo5.lab01.model.Empleado;
 import edu.cibertec.capitulo5.lab01.service.DepartamentoService;
 import edu.cibertec.capitulo5.lab01.service.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,8 @@ public class EmpleadoController {
 		map.addAttribute("listarEmpleados", empleadoService.listarEmpleados());
 		return "empleados/listar";
 	}
-	
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping(value = "/nuevo")
 	public String empleadoNuevo(Model map) {
 		map.addAttribute("empleado", new Empleado());

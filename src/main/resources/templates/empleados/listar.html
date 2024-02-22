@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<th:block th:insert="fragments/resources"></th:block>
+<th:block th:insert="~{fragments/resources}"></th:block>
 </head>
 <body data-ma-theme="blue">
-	<th:block th:insert="fragments/header"></th:block>
-	<th:block th:insert="fragments/menu"></th:block>
+	<th:block th:insert="~{fragments/header}"></th:block>
+	<th:block th:insert="~{fragments/menu}"></th:block>
 	<section class="content">
 
 		<div class="card">
 			<div class="card-body">
 				<h4 class="card-title">Gestionar empleados</h4>
 				
-				<div class="form-row">
+				<div class="form-row" sec:authorize="hasRole('ADMIN')">
 					<div class="col-m-6">
 						<div class="form-group">
 							<a href="/empleados/nuevo" class="btn btn-primary">Nuevo empleado</a>
@@ -52,7 +52,7 @@
 										<a class="btn btn-primary" th:href="@{/empleados/editar/{id}(id=${empleado.id})}">
 											<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 										</a>
-										<a class="btn btn-danger" href="#" th:onclick="'eliminarEmpleado(' + ${empleado.id} + ')'">
+										<a class="btn btn-danger" href="#" th:onclick="'eliminarEmpleado(' + ${empleado.id} + ')'" sec:authorize="hasRole('ADMIN')">
 											<i class="zmdi zmdi-delete zmdi-hc-fw"></i>
 										</a>
 									</td>

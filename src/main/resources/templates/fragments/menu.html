@@ -5,7 +5,9 @@
 				<img class="user__img" th:src="@{/demo/img/profile-pics/4.jpg}" alt="">
 				<div>
 					<div class="user__name">
-						Dany Cenas
+						User: <span sec:authentication="name"></span>
+						<br/>
+						Roles: <span sec:authentication="principal.authorities"></span>
 					</div>
 					<div class="user__email">danycenas@example.com</div>
 				</div>
